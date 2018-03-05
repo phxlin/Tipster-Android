@@ -1,11 +1,13 @@
 package me.yufanlin.tipster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,24 +23,10 @@ public class PrefsActivity extends AppCompatActivity {
     public static final String LOW_KEY = "low_key";
     public static final String MID_KEY = "mid_key";
     public static final String HIGH_KEY = "high_key";
-    SharedPreferences.Editor editor;
 
     @BindView(R.id.lowEditText) TextView mLowEditView;
     @BindView(R.id.midEditText) TextView mMidEditView;
     @BindView(R.id.highEditText) TextView mHighEditView;
-
-    @OnClick(R.id.lowEditText) void onEtvLowClick() {
-        editor = getSharedPrefs().edit();
-        putDouble(editor, LOW_KEY, Double.parseDouble(mLowEditView.getText().toString())).apply();
-    }
-    @OnClick(R.id.midEditText) void onEtvMidClick() {
-        editor = getSharedPrefs().edit();
-        putDouble(editor, MID_KEY, Double.parseDouble(mMidEditView.getText().toString())).apply();
-    }
-    @OnClick(R.id.highEditText) void onEtvHighClick() {
-        editor = getSharedPrefs().edit();
-        putDouble(editor, HIGH_KEY, Double.parseDouble(mHighEditView.getText().toString())).apply();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +35,47 @@ public class PrefsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        //noinspection ConstantConditions
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_checkmark);
+
         SharedPreferences prefs = getSharedPreferences(PrefsActivity.MY_GLOBAL_PREFS, MODE_PRIVATE);
 
-        mLowEditView.setText(String.valueOf((int)(getDouble(prefs, PrefsActivity.LOW_KEY, 0.10))));
-        mMidEditView.setText(String.valueOf((int)(getDouble(prefs, PrefsActivity.MID_KEY, 0.20))));
-        mHighEditView.setText(String.valueOf((int)(getDouble(prefs, PrefsActivity.HIGH_KEY, 0.30))));
+        mLowEditView.setText(String.valueOf(prefs.getInt(LOW_KEY, 10)));
+        mMidEditView.setText(String.valueOf(prefs.getInt(MID_KEY, 20)));
+        mHighEditView.setText(String.valueOf(prefs.getInt(HIGH_KEY, 30)));
     }
 
-    //Put double
-    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
-        return edit.putLong(key, Double.doubleToRawLongBits(value));
+//    //Put double
+//    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
+//        return edit.putLong(key, Double.doubleToRawLongBits(value));
+//    }
+//
+//    //Get double
+//    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
+//        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+//    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences.Editor editor = getSharedPreferences(MY_GLOBAL_PREFS, MODE_PRIVATE).edit();
+        editor.putInt(LOW_KEY, Integer.parseInt(mLowEditView.getText().toString()));
+        editor.putInt(MID_KEY, Integer.parseInt(mMidEditView.getText().toString()));
+        editor.putInt(HIGH_KEY, Integer.parseInt(mHighEditView.getText().toString()));
+        editor.apply();
+
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
-    //Get double
-    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
-        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
-    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
 
-    //Get shared preference
-    SharedPreferences getSharedPrefs() {
-        return getSharedPreferences(MY_GLOBAL_PREFS, MODE_PRIVATE);
+        return super.onOptionsItemSelected(item);
     }
 }
