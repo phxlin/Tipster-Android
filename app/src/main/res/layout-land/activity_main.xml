@@ -15,14 +15,15 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/billTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/billTextView" />
+        app:layout_constraintTop_toTopOf="@+id/billTextView"
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/billTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:text="@string/bill_amount"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
@@ -48,6 +49,7 @@
         android:id="@+id/tipAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/tipSpinner"
         app:layout_constraintEnd_toEndOf="@+id/billEditText"
@@ -60,7 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-
         app:layout_constraintBottom_toBottomOf="@+id/tipTextView"
         app:layout_constraintEnd_toEndOf="@+id/billTextView"
         app:layout_constraintTop_toTopOf="@+id/tipTextView" />
@@ -69,7 +70,7 @@
         android:id="@+id/totalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/total"

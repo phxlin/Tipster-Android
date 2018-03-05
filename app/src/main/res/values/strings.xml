@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Tipster</string>
     <string name="settings">SETTINGS</string>
+    <string name="bill_amount">Bill Amount</string>
+    <string name="tip">Tip</string>
+    <string name="total">Total</string>
+    <string name="low">Low</string>
+    <string name="mid">Mid</string>
+    <string name="high">High</string>
+    <string name="percentage">%</string>
 </resources>
