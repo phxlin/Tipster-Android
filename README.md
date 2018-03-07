@@ -11,7 +11,6 @@ The following functionalities are completed:
 
 ## Picture Demo 
 <img src="https://i.imgur.com/BRQZJKI.png" width="500" />
-<img src="https://i.imgur.com/3jdDQWQ.png" width="500" />
 <img src="https://i.imgur.com/RoAWzaY.png" width="500" />
 <img src="https://i.imgur.com/NiNUq9L.png" width="500" />
 <img src="https://i.imgur.com/sldUw1p.png" width="500" />
