@@ -1,4 +1,4 @@
-# Colorizer
+# 
 
 Tipster is a tip calculator application for Android.
 
