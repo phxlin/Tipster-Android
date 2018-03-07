@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,18 +28,28 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
     public static final int SETTING_REQUEST = 1000;
+    private double tipPercentage;
 
+    @BindView(R.id.billEditText) EditText mBillEditText;
     @BindView(R.id.tipAmountTextView) TextView mTipTextView;
     @BindView(R.id.totalAmountTextView) TextView mTotalTextView;
     @BindView(R.id.tipSpinner) Spinner mTipSpinner;
+    @OnClick(R.id.billEditText) void onBillClick() {
+        displayAmount();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Bind butter knife api
         ButterKnife.bind(this);
 
+        //Default bill amount
+        mBillEditText.setText(String.valueOf(0));
+
+        //Set spinner
         setSpinner();
     }
 
@@ -50,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if(item.getItemId() == R.id.action_setting) {
             Intent settingsIntent = new Intent(this, PrefsActivity.class);
             startActivityForResult(settingsIntent, SETTING_REQUEST);
@@ -69,26 +79,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Set spinner
     private void setSpinner() {
         SharedPreferences prefs = getSharedPreferences(PrefsActivity.MY_GLOBAL_PREFS, MODE_PRIVATE);
 
+        //Get int
         int mLow = prefs.getInt(PrefsActivity.LOW_KEY, 10);
         int mMid = prefs.getInt(PrefsActivity.MID_KEY, 20);
         int mHigh = prefs.getInt(PrefsActivity.HIGH_KEY, 30);
 
-        List<String> tipPercentage = new ArrayList<>();
-        tipPercentage.add(mLow + "%");
-        tipPercentage.add(mMid + "%");
-        tipPercentage.add(mHigh + "%");
+        //Make tip percentage list
+        List<String> tipPercentageList = new ArrayList<>();
+        tipPercentageList.add(mLow + "%");
+        tipPercentageList.add(mMid + "%");
+        tipPercentageList.add(mHigh + "%");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipPercentage);
+        //Set adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipPercentageList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mTipSpinner.setAdapter(adapter);
 
+        //Set listener
         mTipSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, adapterView.getItemAtPosition(i) + " is selected", Toast.LENGTH_SHORT).show();
+                tipPercentage = Double.parseDouble(adapterView.getItemAtPosition(i).toString().split("%")[0]);
+                displayAmount();
             }
 
             @Override
@@ -96,5 +112,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //Display amount
+    private void displayAmount() {
+        if(!mBillEditText.getText().toString().equals("")) {
+            double bill = Double.parseDouble(mBillEditText.getText().toString());
+            double tip = bill * tipPercentage / 100;
+
+            mTipTextView.setText(String.valueOf(tip));
+            mTotalTextView.setText(String.valueOf(tip + bill));
+        } else {
+            Toast.makeText(this, "Please enter a bill amount", Toast.LENGTH_SHORT).show();
+        }
     }
 }

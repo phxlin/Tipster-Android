@@ -33,11 +33,13 @@ public class PrefsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefs);
 
+        //Bind butter knife api
         ButterKnife.bind(this);
 
         //noinspection ConstantConditions
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_checkmark);
 
+        //Set tip percentage
         SharedPreferences prefs = getSharedPreferences(PrefsActivity.MY_GLOBAL_PREFS, MODE_PRIVATE);
 
         mLowEditView.setText(String.valueOf(prefs.getInt(LOW_KEY, 10)));
@@ -45,24 +47,18 @@ public class PrefsActivity extends AppCompatActivity {
         mHighEditView.setText(String.valueOf(prefs.getInt(HIGH_KEY, 30)));
     }
 
-//    //Put double
-//    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
-//        return edit.putLong(key, Double.doubleToRawLongBits(value));
-//    }
-//
-//    //Get double
-//    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
-//        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
-//    }
 
     @Override
     public void onBackPressed() {
         SharedPreferences.Editor editor = getSharedPreferences(MY_GLOBAL_PREFS, MODE_PRIVATE).edit();
+
+        //Put int
         editor.putInt(LOW_KEY, Integer.parseInt(mLowEditView.getText().toString()));
         editor.putInt(MID_KEY, Integer.parseInt(mMidEditView.getText().toString()));
         editor.putInt(HIGH_KEY, Integer.parseInt(mHighEditView.getText().toString()));
         editor.apply();
 
+        //Send back intent with result
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
 
@@ -78,4 +74,14 @@ public class PrefsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    //Put double
+//    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
+//        return edit.putLong(key, Double.doubleToRawLongBits(value));
+//    }
+//
+//    //Get double
+//    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
+//        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+//    }
 }
