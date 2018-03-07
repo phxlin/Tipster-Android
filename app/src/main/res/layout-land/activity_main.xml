@@ -35,15 +35,14 @@
         android:id="@+id/tipTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/tip"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/totalTextView"
-        app:layout_constraintStart_toStartOf="@+id/billTextView"
-        app:layout_constraintTop_toBottomOf="@+id/billTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/tipSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/billTextView"
+        app:layout_constraintTop_toTopOf="@+id/tipSpinner" />
 
     <TextView
         android:id="@+id/tipAmountTextView"
@@ -51,10 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tipSpinner"
+        app:layout_constraintBottom_toBottomOf="@+id/tipTextView"
         app:layout_constraintEnd_toEndOf="@+id/billEditText"
         app:layout_constraintStart_toStartOf="@+id/billEditText"
-        app:layout_constraintTop_toTopOf="@+id/tipSpinner" />
+        app:layout_constraintTop_toTopOf="@+id/tipTextView" />
 
     <Spinner
         android:id="@+id/tipSpinner"
@@ -62,9 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tipTextView"
-        app:layout_constraintEnd_toEndOf="@+id/billTextView"
-        app:layout_constraintTop_toTopOf="@+id/tipTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/totalTextView"
+        app:layout_constraintStart_toStartOf="@+id/billTextView"
+        app:layout_constraintTop_toBottomOf="@+id/billTextView" />
 
     <TextView
         android:id="@+id/totalTextView"
@@ -72,14 +71,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:text="@string/total"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tipSpinner"
-        app:layout_constraintStart_toStartOf="@+id/tipTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/tipTextView"
+        app:layout_constraintStart_toStartOf="@+id/tipSpinner" />
 
     <TextView
         android:id="@+id/totalAmountTextView"

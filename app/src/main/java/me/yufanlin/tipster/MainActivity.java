@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         tipPercentageList.add(mHigh + "%");
 
         //Set adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipPercentageList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, tipPercentageList);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         mTipSpinner.setAdapter(adapter);
 
         //Set listener
