@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.security.acl.LastOwnerException;
 
@@ -50,19 +51,25 @@ public class PrefsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        SharedPreferences.Editor editor = getSharedPreferences(MY_GLOBAL_PREFS, MODE_PRIVATE).edit();
+        if(!mLowEditView.getText().toString().equals("")
+                && !mMidEditView.getText().toString().equals("")
+                && !mHighEditView.getText().toString().equals("")) {
+            SharedPreferences.Editor editor = getSharedPreferences(MY_GLOBAL_PREFS, MODE_PRIVATE).edit();
 
-        //Put int
-        editor.putInt(LOW_KEY, Integer.parseInt(mLowEditView.getText().toString()));
-        editor.putInt(MID_KEY, Integer.parseInt(mMidEditView.getText().toString()));
-        editor.putInt(HIGH_KEY, Integer.parseInt(mHighEditView.getText().toString()));
-        editor.apply();
+            //Put int
+            editor.putInt(LOW_KEY, Integer.parseInt(mLowEditView.getText().toString()));
+            editor.putInt(MID_KEY, Integer.parseInt(mMidEditView.getText().toString()));
+            editor.putInt(HIGH_KEY, Integer.parseInt(mHighEditView.getText().toString()));
+            editor.apply();
 
-        //Send back intent with result
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
+            //Send back intent with result
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
 
-        finish();
+            finish();
+        } else {
+            Toast.makeText(this, "Please enter a percentage", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
