@@ -13,9 +13,9 @@
         android:layout_marginEnd="50dp"
         android:inputType="numberDecimal"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/billTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/dollarSign3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/billTextView" />
+        app:layout_constraintTop_toTopOf="@+id/dollarSign3" />
 
     <TextView
         android:id="@+id/billTextView"
@@ -44,15 +44,14 @@
 
     <TextView
         android:id="@+id/tipAmountTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tipTextView"
         app:layout_constraintEnd_toEndOf="@+id/billEditText"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/billEditText"
-        app:layout_constraintTop_toTopOf="@+id/tipTextView" />
+        app:layout_constraintTop_toTopOf="@+id/dollarSign2" />
 
     <Spinner
         android:id="@+id/tipSpinner"
@@ -81,14 +80,52 @@
 
     <TextView
         android:id="@+id/totalAmountTextView"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/tipAmountTextView"
+        app:layout_constraintStart_toStartOf="@+id/tipAmountTextView"
+        app:layout_constraintTop_toTopOf="@+id/dollarSign1" />
+
+    <TextView
+        android:id="@+id/dollarSign1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/dollar_sign"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/totalTextView"
-        app:layout_constraintEnd_toEndOf="@+id/tipAmountTextView"
-        app:layout_constraintStart_toStartOf="@+id/tipAmountTextView"
-        app:layout_constraintTop_toTopOf="@+id/totalTextView"
-        app:layout_constraintVertical_bias="0.50" />
+        app:layout_constraintEnd_toStartOf="@+id/totalAmountTextView"
+        app:layout_constraintTop_toTopOf="@+id/totalTextView" />
+
+    <TextView
+        android:id="@+id/dollarSign2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/dollar_sign"
+        android:textColor="@android:color/background_dark"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tipTextView"
+        app:layout_constraintEnd_toStartOf="@+id/tipAmountTextView"
+        app:layout_constraintTop_toTopOf="@+id/tipTextView" />
+
+    <TextView
+        android:id="@+id/dollarSign3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/dollar_sign"
+        android:textColor="@android:color/background_dark"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/billTextView"
+        app:layout_constraintEnd_toStartOf="@+id/billEditText"
+        app:layout_constraintTop_toTopOf="@+id/billTextView"
+        app:layout_constraintVertical_bias="0.0"/>
 
 </android.support.constraint.ConstraintLayout>

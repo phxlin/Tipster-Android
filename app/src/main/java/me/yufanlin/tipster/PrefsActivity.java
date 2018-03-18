@@ -48,7 +48,6 @@ public class PrefsActivity extends AppCompatActivity {
         mHighEditView.setText(String.valueOf(prefs.getInt(HIGH_KEY, 30)));
     }
 
-
     @Override
     public void onBackPressed() {
         if(!mLowEditView.getText().toString().equals("")

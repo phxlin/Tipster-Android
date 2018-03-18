@@ -1,11 +1,7 @@
 package me.yufanlin.tipster;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
         //Bind butter knife api
         ButterKnife.bind(this);
 
-        //Default bill amount
+        //Set default bill amount
         mBillEditText.setText(String.valueOf(0));
 
         //Set spinner
         setSpinner();
     }
 
+    //Setting menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -83,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void setSpinner() {
         SharedPreferences prefs = getSharedPreferences(PrefsActivity.MY_GLOBAL_PREFS, MODE_PRIVATE);
 
-        //Get int
+        //Retrieve tip percentage
         int mLow = prefs.getInt(PrefsActivity.LOW_KEY, 10);
         int mMid = prefs.getInt(PrefsActivity.MID_KEY, 20);
         int mHigh = prefs.getInt(PrefsActivity.HIGH_KEY, 30);
