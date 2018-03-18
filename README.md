@@ -10,9 +10,8 @@ The following functionalities are completed:
 * [X] Save tip percentage preference.
 
 ## Picture Demo 
-<img src="https://i.imgur.com/BRQZJKI.png" width="500" />
-<img src="https://i.imgur.com/RoAWzaY.png" width="500" />
-<img src="https://i.imgur.com/NiNUq9L.png" width="500" />
-<img src="https://i.imgur.com/sldUw1p.png" width="500" />
-<img src="https://i.imgur.com/McKRU4r.png" width="500" />
-<img src="https://i.imgur.com/yHhBRIJ.png" width="500" />
+<img src="https://i.imgur.com/I8Wi8CK.png" width="500" />
+<img src="https://i.imgur.com/J4huqsP.png" width="500" />
+<img src="https://i.imgur.com/IywXGD8.png" width="500" />
+<img src="https://i.imgur.com/g5bhjtd.png" width="500" />
+<img src="https://i.imgur.com/Tz6TqVU.png" width="500" />
