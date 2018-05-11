@@ -117,8 +117,11 @@ public class MainActivity extends AppCompatActivity {
             double bill = Double.parseDouble(mBillEditText.getText().toString());
             double tip = bill * tipPercentage / 100;
 
-            mTipTextView.setText(String.valueOf(tip));
-            mTotalTextView.setText(String.valueOf(tip + bill));
+            String tipString = String.format("%.2f", tip);
+            String totalString = String.format("%.2f", tip + bill);
+
+            mTipTextView.setText(String.valueOf(tipString));
+            mTotalTextView.setText(String.valueOf(totalString));
         } else {
             Toast.makeText(this, "Please enter a bill amount", Toast.LENGTH_SHORT).show();
         }
